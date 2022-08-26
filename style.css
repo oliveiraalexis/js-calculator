@@ -72,3 +72,8 @@ button{
     height: 85px;
     cursor: pointer;
 }
+
+button:hover{
+    background-color: #A5BEE3;
+    color: #000A25;
+}
