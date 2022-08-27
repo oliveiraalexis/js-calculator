@@ -52,15 +52,29 @@ for (const key in operations) {
 }
 
 btnResult.addEventListener("click", () => {
-    let replacedResult
 
-    calcHistory.innerText = result.textContent+"=";
-    calcHistory.style.color = "#FFFFFF";
+    if (result.textContent[result.textContent.length-1].match("[-+x*/]") == null){
+        let replacedResult;
 
-    if (result.textContent.includes("x")){
-        replacedResult = result.textContent.replaceAll("x", "*");
+        // tratando o seguinte exemplo: histórico (3*2=), result (6) e clique em '=' novamente
+        // if(calcHistory.textContent.endsWith("=") && !result.textContent.match("[-+x*/]")){
+            
+        //     let separatorCaracter = calcHistory.textContent.match("[-+x*/]");
+        //     let number = calcHistory.textContent.slice(0, calcHistory.textContent.length-1);
+        //     console.log(separatorCaracter[0]);
+            
+        //     number.split(separatorCaracter[0]);
+        //     calcHistory.innerHTML = `${result.textContent} ${separatorCaracter[0]} ${number[2]}`;
+        //     result.innerHTML = `${result.textContent} ${separatorCaracter[0]} ${number[2]}`;
+        // }
+
+        calcHistory.innerText = result.textContent+"=";
+        calcHistory.style.color = "#FFFFFF";
+
+        result.innerText = (result.textContent.includes("x"))
+            ? eval(result.textContent.replaceAll("x", "*"))
+            : eval(result.textContent);
     }
-    result.innerText = eval(replacedResult || result.textContent);
         
 })
 
